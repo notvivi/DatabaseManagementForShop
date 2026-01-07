@@ -1,0 +1,6 @@
+﻿title,usage,dangerous
+Sword,Combat,True
+Health Potion,Healing,False
+Magic Scroll,Spellcasting,True
+Torch,Illumination,False
+Lockpick,Stealth,False
