@@ -48,7 +48,7 @@ namespace DbProjekt.DAO
                                 reader[1].ToString(),
                                 reader[2].ToString(),
                                 Convert.ToBoolean(reader[3].ToString()),
-                                Convert.ToInt32(reader[4].ToString()),
+                                Convert.ToSingle(reader[4].ToString()),
                                 Convert.ToInt32(reader[5].ToString())
                             );
                             yield return list;
@@ -88,7 +88,7 @@ namespace DbProjekt.DAO
                             reader[1].ToString(),
                             reader[2].ToString(),
                             Convert.ToBoolean(reader[3].ToString()),
-                            Convert.ToInt32(reader[4].ToString()),
+                            Convert.ToSingle(reader[4].ToString()),
                             Convert.ToInt32(reader[5].ToString())
                             );
                     }

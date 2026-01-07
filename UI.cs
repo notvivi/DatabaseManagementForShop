@@ -63,7 +63,7 @@ namespace DbProjekt
     /// </summary>
     public void Start()
     {
-            // THESE ARE THE METHODS YOU ARE SUPPOSSED TO UNCOMMENT
+                                                        // THESE ARE THE METHODS YOU ARE SUPPOSSED TO UNCOMMENT
             //PushArtifactDAO();
             //PushRaceDAO();  
             //PushListDAO();
@@ -454,6 +454,7 @@ namespace DbProjekt
         /// </summary>
         public void PushListDAO()
         {
+            // list is class not a normal list
             List<int> artifact_ids = new List<int>();
 
             foreach(Artifact i in artifacts.GetAll())
@@ -462,11 +463,11 @@ namespace DbProjekt
               
             }
 
-            Tables.List l1 = new Tables.List(artifact_ids[0],8,800);
-            Tables.List l2 = new Tables.List(artifact_ids[1], 10, 1500);
-            Tables.List l3 = new Tables.List(artifact_ids[2], 5, 400);
-            Tables.List l4 = new Tables.List(artifact_ids[3], 7, 600);
-            Tables.List l5 = new Tables.List(artifact_ids[4], 2, 300);
+            Tables.List l1 = new Tables.List(artifact_ids[0],8.0f,800);
+            Tables.List l2 = new Tables.List(artifact_ids[1], 10.0f, 1500);
+            Tables.List l3 = new Tables.List(artifact_ids[2], 5.0f, 400);
+            Tables.List l4 = new Tables.List(artifact_ids[3], 7.0f, 600);
+            Tables.List l5 = new Tables.List(artifact_ids[4], 2.0f, 300);
 
             listArtif.Save(l1);
             listArtif.Save(l2);

@@ -13,7 +13,7 @@ namespace DbProjekt.Tables
     {
         private int id;
         private int artifact_id;
-        private int quality;
+        private float quality;
         private int price;
         private string artifact_title;
         private string artifact_description;
@@ -22,7 +22,7 @@ namespace DbProjekt.Tables
         public int ID { get => id; set => id = value; }
 
         public int Artifact_id { get => artifact_id; set => artifact_id = value; }
-        public int Quality
+        public float Quality
         {
             get => quality;
             set 
@@ -56,7 +56,7 @@ namespace DbProjekt.Tables
         /// <param name="artifact_id"></param>
         /// <param name="quality"></param>
         /// <param name="price"></param>
-        public List(int id, int artifact_id, int quality, int price)
+        public List(int id, int artifact_id, float quality, int price)
         {
             this.ID = id;
             this.Artifact_id = artifact_id;
@@ -70,7 +70,7 @@ namespace DbProjekt.Tables
         /// <param name="artifact_id"></param>
         /// <param name="quality"></param>
         /// <param name="price"></param>
-        public List(int artifact_id, int quality, int price)
+        public List(int artifact_id, float quality, int price)
         {
             this.ID = 0;
             this.Artifact_id = artifact_id;
@@ -86,7 +86,7 @@ namespace DbProjekt.Tables
         /// <param name="artifact_dangerous"></param>
         /// <param name="quality"></param>
         /// <param name="price"></param>
-        public List(int id, string artifact_title, string artifact_description, bool artifact_dangerous, int quality, int price)
+        public List(int id, string artifact_title, string artifact_description, bool artifact_dangerous, float quality, int price)
         {
             this.ID= id;
             this.Artifact_title = artifact_title;
