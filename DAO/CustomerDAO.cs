@@ -129,6 +129,13 @@ namespace DbProjekt.DAO
             }
          
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="conn"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
         public bool Exists(int id, SqlConnection conn, SqlTransaction tran)
         {
             SqlCommand cmd = new SqlCommand(
