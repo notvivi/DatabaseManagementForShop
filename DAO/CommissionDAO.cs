@@ -37,12 +37,7 @@ namespace DbProjekt.DAO
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
 
-            using (SqlCommand command = new SqlCommand("select commission.id, customer.nickname, artifact.title as artifact " +
-                "from commission " +
-                "inner join list on commission.list_id = list.id " +
-                "inner join artifact on list.artifact_id = artifact.id " +
-                "inner join customer on customer.id = commission.customer_id " +
-                "inner join race on customer.race_id = race.id", conn))
+            using (SqlCommand command = new SqlCommand("select * from get_commissions", conn))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

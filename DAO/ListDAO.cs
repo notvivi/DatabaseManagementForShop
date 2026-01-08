@@ -38,7 +38,7 @@ namespace DbProjekt.DAO
             SqlConnection conn = DatabaseSingleton.GetInstance();
 
          
-                using (SqlCommand command = new SqlCommand("select list.id, artifact.title, artifact.usage, artifact.dangerous, quality, price from list inner join artifact on list.artifact_id = artifact.id", conn))
+                using (SqlCommand command = new SqlCommand("select * from get_pricelist", conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -56,9 +56,6 @@ namespace DbProjekt.DAO
                         }
                     }
                 }
-            
-           
-          
         }
         /// <summary>
         ///  Method for getting one entry in database by ID
