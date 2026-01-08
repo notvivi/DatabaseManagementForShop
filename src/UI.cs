@@ -9,15 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace DbProjekt
+namespace DbProjekt.src
 {
     /// <summary>
     /// Class for whole ui 
     /// </summary>
     public class UI
     {
-        DAO.CustomerDAO customers = new DAO.CustomerDAO();
-        DAO.CommissionDAO commissions = new DAO.CommissionDAO();
+        CustomerDAO customers = new CustomerDAO();
+        CommissionDAO commissions = new CommissionDAO();
         RaceDAO races = new RaceDAO();
         ListDAO listArtif = new ListDAO();
         ArtifactDAO artifacts = new ArtifactDAO();
@@ -393,7 +393,7 @@ namespace DbProjekt
 
             try
             {
-                Tables.Customer c1 = new Customer(nickname, race_id);
+                Customer c1 = new Customer(nickname, race_id);
                 customers.Save(c1);
                 
             }
@@ -463,11 +463,11 @@ namespace DbProjekt
               
             }
 
-            Tables.List l1 = new Tables.List(artifact_ids[0],8.0f,800);
-            Tables.List l2 = new Tables.List(artifact_ids[1], 10.0f, 1500);
-            Tables.List l3 = new Tables.List(artifact_ids[2], 5.0f, 400);
-            Tables.List l4 = new Tables.List(artifact_ids[3], 7.0f, 600);
-            Tables.List l5 = new Tables.List(artifact_ids[4], 2.0f, 300);
+            List l1 = new List(artifact_ids[0],8.0f,800);
+            List l2 = new List(artifact_ids[1], 10.0f, 1500);
+            List l3 = new List(artifact_ids[2], 5.0f, 400);
+            List l4 = new List(artifact_ids[3], 7.0f, 600);
+            List l5 = new List(artifact_ids[4], 2.0f, 300);
 
             listArtif.Save(l1);
             listArtif.Save(l2);
@@ -481,11 +481,11 @@ namespace DbProjekt
         /// </summary>
         public void PushRaceDAO()
         {
-            Tables.Race r1 = new Tables.Race("Human");
-            Tables.Race r2 = new Tables.Race("Elf");
-            Tables.Race r3 = new Tables.Race("Dwarf");
-            Tables.Race r4 = new Tables.Race("Demon");
-            Tables.Race r5 = new Tables.Race("Troll");
+            Race r1 = new Race("Human");
+            Race r2 = new Race("Elf");
+            Race r3 = new Race("Dwarf");
+            Race r4 = new Race("Demon");
+            Race r5 = new Race("Troll");
 
             races.Save(r1);
             races.Save(r2);
@@ -498,11 +498,11 @@ namespace DbProjekt
         /// </summary>
         public void PushArtifactDAO()
         {
-            Tables.Artifact a1 = new Tables.Artifact("Blade of the Ruined King", "User or another person is healed", false);
-            Tables.Artifact a2 = new Tables.Artifact("Ring of Flame", "User is granted power of flames", true);
-            Tables.Artifact a3 = new Tables.Artifact("Onyx Boots", "When wearing them, user moves faster", false);
-            Tables.Artifact a4 = new Tables.Artifact("Arch of Guardians", "For creating shiled, 5 meters", false);
-            Tables.Artifact a5 = new Tables.Artifact("Skull of the Dead", "Creates explosion 5km", true);
+            Artifact a1 = new Artifact("Blade of the Ruined King", "User or another person is healed", false);
+            Artifact a2 = new Artifact("Ring of Flame", "User is granted power of flames", true);
+            Artifact a3 = new Artifact("Onyx Boots", "When wearing them, user moves faster", false);
+            Artifact a4 = new Artifact("Arch of Guardians", "For creating shiled, 5 meters", false);
+            Artifact a5 = new Artifact("Skull of the Dead", "Creates explosion 5km", true);
             artifacts.Save(a1);
             artifacts.Save(a2);
             artifacts.Save(a3);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbProjekt
+namespace DbProjekt.src
 {
     /// <summary>
     /// Interface for setting ID

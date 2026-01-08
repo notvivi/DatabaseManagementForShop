@@ -1,7 +1,7 @@
 ﻿using DbProjekt.Tables;
 using Microsoft.VisualBasic;
 
-namespace DbProjekt
+namespace DbProjekt.src
 {
     /// <summary>
     /// Main class only with Ui object 

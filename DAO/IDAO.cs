@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DbProjekt.src;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbProjekt
+namespace DbProjekt.DAO
 {
     /// <summary>
     /// Interface for base methods for dao classes

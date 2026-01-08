@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbProjekt
+namespace DbProjekt.src
 {
     /// <summary>
     /// Class for joining into database
@@ -49,7 +49,7 @@ namespace DbProjekt
             {
                 Console.WriteLine("Cannot login into database");
                 Console.WriteLine("Check config file, if everything is correct.");
-                System.Environment.Exit(1);
+                Environment.Exit(1);
             }
 
             return conn;
