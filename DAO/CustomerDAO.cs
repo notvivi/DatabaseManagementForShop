@@ -129,6 +129,16 @@ namespace DbProjekt.DAO
             }
          
         }
+        public bool Exists(int id, SqlConnection conn, SqlTransaction tran)
+        {
+            SqlCommand cmd = new SqlCommand(
+                "SELECT COUNT(*) FROM customer WHERE id = @id",
+                conn, tran);
+
+            cmd.Parameters.AddWithValue("@id", id);
+            return (int)cmd.ExecuteScalar() > 0;
+        }
+
         /// <summary>
         /// Method for removing every entry in table
         /// </summary>

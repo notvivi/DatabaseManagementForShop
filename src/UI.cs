@@ -198,9 +198,7 @@ namespace DbProjekt.src
 
             } while (!exists);
 
-
-            Commission commission = new Commission(artifact_id, customer_id, DateTime.Now);
-            commissions.Save(commission);
+            new CommissionService().CreateCommission(artifact_id, customer_id);
         }
 
         /// <summary>

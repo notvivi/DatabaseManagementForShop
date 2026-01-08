@@ -92,44 +92,35 @@ namespace DbProjekt.DAO
         /// Method for saving entry to database
         /// </summary>
         /// <param name="commission"></param>
-        public void Save(Commission commission)
+        public void Save(Commission commission, SqlConnection conn, SqlTransaction tran)
         {
-            SqlConnection conn = DatabaseSingleton.GetInstance();
+            SqlCommand command;
 
-            SqlCommand command = null;
-            try
+            if (commission.ID < 1)
             {
-                if (commission.ID < 1)
-                {
-                    using (command = new SqlCommand("INSERT INTO commission (list_id, customer_id, order_date) VALUES (@list_id, @customer_id, @order_date)", conn))
-                    {
-                        command.Parameters.Add(new SqlParameter("@list_id", commission.List_id));
-                        command.Parameters.Add(new SqlParameter("@customer_id", commission.Customer_id));
-                        DateTime time = commission.Order_date;
-                        string sqlDateTime = time.ToString("yyyy-MM-dd HH:mm:ss");
-                        command.Parameters.Add(new SqlParameter("@order_date", time));
-                        command.ExecuteNonQuery();
-                        command.CommandText = "Select @@Identity";
-                        commission.ID = Convert.ToInt32(command.ExecuteScalar());
-                    }
-                }
-                else
-                {
-                    using (command = new SqlCommand("UPDATE commission SET list_id = @list_id, customer_id = @customer_id " +
-                        "WHERE id = @id", conn))
-                    {
-                        command.Parameters.Add(new SqlParameter("@id", commission.ID));
-                        command.Parameters.Add(new SqlParameter("@list_id", commission.List_id));
-                        command.Parameters.Add(new SqlParameter("@customer_id", commission.Customer_id));
-                        command.ExecuteNonQuery();
-                    }
-                }
+                command = new SqlCommand(
+                    "INSERT INTO commission (list_id, customer_id, order_date) " +
+                    "VALUES (@list_id, @customer_id, @order_date); SELECT SCOPE_IDENTITY();",
+                    conn, tran);
+
+                command.Parameters.AddWithValue("@list_id", commission.List_id);
+                command.Parameters.AddWithValue("@customer_id", commission.Customer_id);
+                command.Parameters.AddWithValue("@order_date", commission.Order_date);
+
+                commission.ID = Convert.ToInt32(command.ExecuteScalar());
             }
-            catch
+            else
             {
-                Console.WriteLine("Foreign key of list or customer wasnt found.");
+                command = new SqlCommand(
+                    "UPDATE commission SET list_id = @list_id, customer_id = @customer_id WHERE id = @id",
+                    conn, tran);
+
+                command.Parameters.AddWithValue("@id", commission.ID);
+                command.Parameters.AddWithValue("@list_id", commission.List_id);
+                command.Parameters.AddWithValue("@customer_id", commission.Customer_id);
+
+                command.ExecuteNonQuery();
             }
-      
         }
         /// <summary>
         /// Method for removing every entry in table
@@ -144,6 +135,9 @@ namespace DbProjekt.DAO
             }
         }
 
-       
+        public void Save(Commission element)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

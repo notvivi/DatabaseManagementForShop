@@ -135,11 +135,16 @@ namespace DbProjekt.DAO
             {
                 Console.WriteLine("Foreign key of artifact wasnt found");
             }
-            
-                
-            
-           
-           
+        }
+
+        public bool Exists(int id, SqlConnection conn, SqlTransaction tran)
+        {
+            SqlCommand cmd = new SqlCommand(
+                "SELECT COUNT(*) FROM list WHERE id = @id",
+                conn, tran);
+
+            cmd.Parameters.AddWithValue("@id", id);
+            return (int)cmd.ExecuteScalar() > 0;
         }
 
         /// <summary>
