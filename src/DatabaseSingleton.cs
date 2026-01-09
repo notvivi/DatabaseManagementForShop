@@ -35,12 +35,24 @@ namespace DbProjekt.src
                 if (conn == null)
                 {
                     SqlConnectionStringBuilder consStringBuilder = new SqlConnectionStringBuilder();
-                    consStringBuilder.UserID = ReadSetting("Name");
-                    consStringBuilder.Password = ReadSetting("Password");
                     consStringBuilder.InitialCatalog = ReadSetting("Database");
                     consStringBuilder.DataSource = ReadSetting("DataSource");
                     consStringBuilder.ConnectTimeout = 30;
                     consStringBuilder.TrustServerCertificate = true;
+
+                    string user = ReadSetting("Name");
+                    string pass = ReadSetting("Password");
+
+                    if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(pass))
+                    {
+                        consStringBuilder.UserID = user;
+                        consStringBuilder.Password = pass;
+                    }
+                    else
+                    {
+                        consStringBuilder.IntegratedSecurity = true; 
+                    }
+
                     conn = new SqlConnection(consStringBuilder.ConnectionString);
                     conn.Open();
                     

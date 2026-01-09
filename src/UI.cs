@@ -86,6 +86,7 @@ namespace DbProjekt.src
                 Console.WriteLine("2.Cancel your order");
                 Console.WriteLine("3.Edit your order");
                 Console.WriteLine("4.Create new customer");
+                Console.WriteLine("5.Show statistics");
                 string choice = Console.ReadLine();
                 Choice(choice);
 
@@ -125,6 +126,9 @@ namespace DbProjekt.src
                     Console.WriteLine("Creating customer.");
                     CreateCustomer();
                     break;
+                case "5":
+                    ShowStats();
+                    break;
                 default:
                     return;   
             }
@@ -154,7 +158,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -188,7 +191,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -234,7 +236,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -244,7 +245,7 @@ namespace DbProjekt.src
 
             } while (!exists);
 
-            commissions.Delete(commissions.GetByID(order_id));
+            commissions.Cancel(commissions.GetByID(order_id));
 
         }
         /// <summary>
@@ -279,7 +280,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -309,7 +309,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -340,7 +339,13 @@ namespace DbProjekt.src
                 nickname = Console.ReadLine()?.Trim();
                 exists = customers.GetAll().Any(i => i.Nickname == nickname);
 
-                if (nickname.Length > 20)
+                if (string.IsNullOrEmpty(nickname))
+                {
+                    Console.WriteLine("Nickname cannot be empty.");
+                    Console.WriteLine("Try again.");
+
+                }
+                else if (nickname.Length > 20)
                 {
                     Console.WriteLine("Nickname is longer then 20.");
                     Console.WriteLine("Try again.");
@@ -351,7 +356,7 @@ namespace DbProjekt.src
                     Console.WriteLine("Choose another one.");
                 }
 
-            } while (exists || nickname.Length > 20);
+            } while (exists || string.IsNullOrEmpty(nickname) || nickname.Length > 20);
 
 
             Console.WriteLine("Write a number of race you are");
@@ -379,7 +384,6 @@ namespace DbProjekt.src
 
                 if (exists)
                 {
-                    Console.WriteLine("Id was found");
                     break;
                 }
                 else
@@ -412,6 +416,46 @@ namespace DbProjekt.src
 
             }
         }
+        public void ShowStats()
+        {
+            var allCustomers = customers.GetAll().ToList();
+
+            if (allCustomers.Count == 0)
+            {
+                Console.WriteLine("No customers have been created yet.");
+                return;
+            }
+
+            Console.WriteLine("Choose which customer you are:");
+            foreach (var c in allCustomers)
+            {
+                Console.WriteLine(c);
+            }
+
+            int customerId;
+            bool exists;
+            do
+            {
+                customerId = getNumber();
+                exists = allCustomers.Any(i => i.ID == customerId);
+                if (!exists)
+                    Console.WriteLine("Id wasn't found. Try again.");
+            } while (!exists);
+
+            try
+            {
+                StatsDAO statsDAO = new StatsDAO();
+                Stats stats = statsDAO.GetStats(customerId);
+
+                Console.WriteLine("----- STATISTIKY -----");
+                Console.WriteLine(stats);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Nepodařilo se načíst statistiky pro tohoto zákazníka: " + ex.Message);
+            }
+        }
+
         /// <summary>
         /// Method for not getting null input 
         /// Source: My friend helped me with this one

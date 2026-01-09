@@ -20,7 +20,8 @@ namespace DbProjekt.Tables
 
         private string customer_nick;
         private string artifact_title;
-        
+
+        public OrderStatus Status { get; set; }
 
         public int ID { get => id; set => id = value; }
         public int List_id { get => list_id; set => list_id = value; }
@@ -43,6 +44,7 @@ namespace DbProjekt.Tables
             this.List_id = list_id;
             this.Customer_id = customer_id;
             this.Order_date = finished_date;
+            Status = OrderStatus.Created;
 
         }
         /// <summary>
@@ -80,4 +82,11 @@ namespace DbProjekt.Tables
             return $"{ID}. {Customer_nick} {Artifact_title}";
         }
     }
+}
+
+public enum OrderStatus
+{
+    Created = 1,
+    Cancelled = 2,
+    Completed = 3
 }
