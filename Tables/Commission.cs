@@ -84,6 +84,9 @@ namespace DbProjekt.Tables
     }
 }
 
+/// <summary>
+/// Enum that defines order status
+/// </summary>
 public enum OrderStatus
 {
     Created = 1,

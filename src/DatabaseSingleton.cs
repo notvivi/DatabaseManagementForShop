@@ -1,10 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Configuration;
 using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DbProjekt.src
@@ -30,7 +31,7 @@ namespace DbProjekt.src
         /// <returns>Sql connection</returns>
         public static SqlConnection GetInstance()
         {
-            try
+            /*try
             {
                 if (conn == null)
                 {
@@ -57,14 +58,38 @@ namespace DbProjekt.src
                     conn.Open();
                     
                 }
-            }catch (Exception ex)
+            }catch (Exception ex) // jeste vyhodit vyjimku
             {
                 Console.WriteLine("Cannot login into database");
                 Console.WriteLine("Check config file, if everything is correct.");
                 Environment.Exit(1);
             }
 
+            return conn;*/
+
+            AppConfig config = null;
+            try
+            {
+                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+                string connectionString = File.ReadAllText(path);
+                config = JsonSerializer.Deserialize<AppConfig>(connectionString);
+                conn = new SqlConnection(config.ConnectionString);
+                conn.Open();
+
+
+            }
+            catch (Exception ex) // jeste vyhodit vyjimku
+            {
+                Console.WriteLine("Cannot login into database");
+                Console.WriteLine("Check json file, if everything is correct.");
+                Console.WriteLine(ex.Message);
+                //Environment.Exit(1);
+
+            }
+            
+
             return conn;
+
         }
         /// <summary>
         /// Method for closing sql connection
@@ -92,3 +117,9 @@ namespace DbProjekt.src
         }
     }
 }
+
+public class AppConfig
+{
+    public string ConnectionString { get; set; }
+}
+

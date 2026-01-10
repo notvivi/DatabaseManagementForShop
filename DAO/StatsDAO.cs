@@ -10,6 +10,12 @@ namespace DbProjekt.DAO
 {
     public class StatsDAO
     {
+        /// <summary>
+        /// Method for selecting stats for a customer from database
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>Data from database</returns>
+        /// <exception cref="Exception"></exception>
         public Stats GetStats(int customerId)
         {
 

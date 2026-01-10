@@ -66,7 +66,6 @@ C:\Users\vtoma\DbProjekt\DbProjekt\obj\Debug\net8.0\DbProjekt.pdb
 C:\Users\vtoma\DbProjekt\DbProjekt\obj\Debug\net8.0\DbProjekt.genruntimeconfig.cache
 C:\Users\vtoma\DbProjekt\DbProjekt\obj\Debug\net8.0\ref\DbProjekt.dll
 C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\DbProjekt.exe
-C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\DbProjekt.dll.config
 C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\DbProjekt.deps.json
 C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\DbProjekt.runtimeconfig.json
 C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\DbProjekt.dll
@@ -133,3 +132,4 @@ C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\refint\DbProjekt.dll
 C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\DbProjekt.pdb
 C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\DbProjekt.genruntimeconfig.cache
 C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\ref\DbProjekt.dll
+C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\config.json

@@ -29,6 +29,10 @@ namespace DbProjekt.DAO
                 commission.ID = 0;
             }
         }
+        /// <summary>
+        /// Method for canceling an entry in database
+        /// </summary>
+        /// <param name="commission"></param>
         public void Cancel(Commission commission)
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
@@ -49,8 +53,13 @@ namespace DbProjekt.DAO
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
 
-            using (SqlCommand command = new SqlCommand("select * from get_commissions", conn))
+            using (SqlCommand command = new SqlCommand("select * from get_commissions where status_id = @status_id", conn))
             {
+                command.Parameters.AddWithValue(
+                       "@status_id",
+                       (int)OrderStatus.Created
+                   );
+
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -60,7 +69,7 @@ namespace DbProjekt.DAO
                             reader[1].ToString(),
                             reader[2].ToString()
                         );
-                        commission.Status = (OrderStatus)Convert.ToInt32(reader[3].ToString());
+                        commission.Status = (OrderStatus)reader.GetInt32(3);
 
                         yield return commission;
 

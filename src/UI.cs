@@ -63,11 +63,6 @@ namespace DbProjekt.src
     /// </summary>
     public void Start()
     {
-                                                        // THESE ARE THE METHODS YOU ARE SUPPOSSED TO UNCOMMENT
-            //PushArtifactDAO();
-            //PushRaceDAO();  
-            //PushListDAO();
-
             bool shopping = true;
 
             while(shopping == true)
@@ -95,8 +90,7 @@ namespace DbProjekt.src
                     shopping = false;
                 }
             }
-
-           
+       
         }
         /// <summary>
         /// Method that switches through different states and methods
@@ -416,6 +410,9 @@ namespace DbProjekt.src
 
             }
         }
+        /// <summary>
+        /// Method for showing statistics for an user
+        /// </summary>
         public void ShowStats()
         {
             var allCustomers = customers.GetAll().ToList();
@@ -491,10 +488,11 @@ namespace DbProjekt.src
                 Console.WriteLine(l);
             }
         }
+
         /// <summary>
         /// Method for saving list data to database + loading into list
         /// </summary>
-        public void PushListDAO()
+        /*public void PushListDAO()
         {
             // list is class not a normal list
             List<int> artifact_ids = new List<int>();
@@ -550,6 +548,6 @@ namespace DbProjekt.src
             artifacts.Save(a3);
             artifacts.Save(a4);
             artifacts.Save(a5);       
-        }
+        }*/
     }
 }

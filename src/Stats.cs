@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DbProjekt.src
 {
+    /// <summary>
+    /// Class
+    /// </summary>
     public class Stats
     {
         public int PocetArtefaktu { get; set; }
@@ -13,6 +16,7 @@ namespace DbProjekt.src
         public decimal Nejlevnejsi { get; set; }
         public int PocetObjednavek { get; set; }
 
+        
         public override string ToString()
         {
             return

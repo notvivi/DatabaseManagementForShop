@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DbProjekt.src
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CommissionService
     {
         private readonly CommissionDAO commissionDAO = new CommissionDAO();
