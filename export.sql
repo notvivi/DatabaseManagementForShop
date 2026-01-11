@@ -161,6 +161,12 @@ INSERT INTO list (artifact_id, quality, price) VALUES
 (4, 7.0, 600),
 (5, 2.0, 300);
 
+INSERT INTO order_status (id, name)
+VALUES 
+    (1, 'Created'),
+    (2, 'Canceled'),
+    (3, 'Paid');
+
 
 -- =====================
 -- VIEWS
