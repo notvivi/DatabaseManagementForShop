@@ -34,9 +34,10 @@ namespace DbProjekt.src
         /// </summary>
         public void Import()
         {
-            Console.WriteLine("Do you want to import data? If not, just skip by writing anything else.");
-            Console.WriteLine("File path have to be in this format filepath.csv");
-            Console.WriteLine("Write y, if you want to import data.");
+            Console.WriteLine("Do you want to import data?");
+            Console.WriteLine("y -> wants to import data."); 
+            Console.WriteLine("anything else -> doesnt want to import data.");
+
 
             string choice = Console.ReadLine();
 

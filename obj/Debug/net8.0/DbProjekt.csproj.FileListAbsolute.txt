@@ -133,3 +133,5 @@ C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\DbProjekt.pdb
 C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\DbProjekt.genruntimeconfig.cache
 C:\Users\vtoma\DbManagementForShop\obj\Debug\net8.0\ref\DbProjekt.dll
 C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\config.json
+C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\artifacts.csv
+C:\Users\vtoma\DbManagementForShop\bin\Debug\net8.0\races.csv
