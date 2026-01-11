@@ -52,30 +52,47 @@ namespace DbProjekt.DAO
         public IEnumerable<Commission> GetAll()
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
+            var commissions = new List<Commission>();
 
-            using (SqlCommand command = new SqlCommand("select * from get_commissions where status_id = @status_id", conn))
+            try
             {
-                command.Parameters.AddWithValue(
-                       "@status_id",
-                       (int)OrderStatus.Created
-                   );
-
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlCommand command = new SqlCommand("select * from get_commissions where status_id = @status_id", conn))
                 {
-                    while (reader.Read())
+                    command.Parameters.AddWithValue(
+                           "@status_id",
+                           (int)OrderStatus.Created
+                     );
+
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        Commission commission = new Commission(
-                            Convert.ToInt32(reader[0].ToString()),
-                            reader[1].ToString(),
-                            reader[2].ToString()
-                        );
-                        commission.Status = (OrderStatus)reader.GetInt32(3);
+                        while (reader.Read())
+                        {
+                            Commission commission = new Commission(
+                                Convert.ToInt32(reader[0].ToString()),
+                                reader[1].ToString(),
+                                reader[2].ToString()
+                            );
+                            commission.Status = (OrderStatus)reader.GetInt32(3);
+                            commissions.Add(commission);
 
-                        yield return commission;
-
+                        }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 208)  
+                    Console.WriteLine("Error: The SQL view 'get_commissions' does not exist.");
+                else
+                    Console.WriteLine("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected error: " + ex.Message);
+            }
+            return commissions;
+
+
         }
         /// <summary>
         ///  Method for getting one entry in database by ID

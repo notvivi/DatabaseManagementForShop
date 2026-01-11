@@ -20,25 +20,44 @@ namespace DbProjekt.DAO
         {
 
             SqlConnection conn = DatabaseSingleton.GetInstance();
-
-            string sql = "SELECT * FROM get_stats_per_order_customer WHERE customer_id = @cid";
-            using SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@cid", customerId);
-
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            try
             {
-                return new Stats
-                {
-                    NumberOfArtifacts = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
-                    MostExpensive = reader.IsDBNull(2) ? 0 : Convert.ToDecimal(reader[2]),
-                    LeastExpensive = reader.IsDBNull(3) ? 0 : Convert.ToDecimal(reader[3]),
-                    NumberOfOrders = reader.IsDBNull(1) ? 0 : reader.GetInt32(1)
-                };
-            }
+                string sql = "SELECT * FROM get_stats_per_order_customer WHERE customer_id = @cid";
+                using SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@cid", customerId);
 
-            throw new Exception("No stats found for customer_id = " + customerId);
+                using SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new Stats
+                    {
+                        NumberOfArtifacts = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                        MostExpensive = reader.IsDBNull(2) ? 0 : Convert.ToDecimal(reader[2]),
+                        LeastExpensive = reader.IsDBNull(3) ? 0 : Convert.ToDecimal(reader[3]),
+                        NumberOfOrders = reader.IsDBNull(1) ? 0 : reader.GetInt32(1)
+                    };
+                }
+
+                throw new Exception("No stats found for customer_id = " + customerId);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 208) 
+                {
+                    Console.WriteLine("Error: The SQL view 'get_stats_per_order_customer' does not exist.");
+                    return null;
+                }
+                else
+                {
+                    Console.WriteLine("SQL Error: " + ex.Message);
+                    throw; 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected error: " + ex.Message);
+                throw;
+            }
         }
     }
     

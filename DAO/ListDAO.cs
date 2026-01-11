@@ -36,8 +36,11 @@ namespace DbProjekt.DAO
         public IEnumerable<List> GetAll()
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
+            var pricelist = new List<Tables.List>();
 
-         
+            try
+            {
+
                 using (SqlCommand command = new SqlCommand("select * from get_pricelist", conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -52,10 +55,24 @@ namespace DbProjekt.DAO
                                 Convert.ToSingle(reader[4].ToString()),
                                 Convert.ToInt32(reader[5].ToString())
                             );
-                            yield return list;
+                            pricelist.Add(list);
                         }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 208)  
+                    Console.WriteLine("Error: The SQL view 'get_pricelist' does not exist.");
+                else
+                    Console.WriteLine("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected error: " + ex.Message);
+            }
+                return pricelist;
+
         }
         /// <summary>
         ///  Method for getting one entry in database by ID
