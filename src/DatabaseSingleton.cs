@@ -65,21 +65,12 @@ namespace DbProjekt.src
                 conn = null;
             }
         }
-        /// <summary>
-        /// Method for reading setting from config file
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns>Key from appsettings</returns>
-        private static string ReadSetting(string key)
-        {
-            //nutno doinstalovat, VS nabídne doinstalaci samo
-            var appSettings = ConfigurationManager.AppSettings;
-            string result = appSettings[key] ?? "Not Found";
-            return result;
-        }
     }
 }
 
+/// <summary>
+/// Class for config
+/// </summary>
 public class AppConfig
 {
     public string ConnectionString { get; set; }

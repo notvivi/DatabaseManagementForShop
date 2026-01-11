@@ -136,7 +136,13 @@ namespace DbProjekt.DAO
                 Console.WriteLine("Foreign key of artifact wasnt found");
             }
         }
-
+        /// <summary>
+        /// Method for checking if specific id exists in the table
+        /// </summary>
+        /// <param name="id">id that im checking</param>
+        /// <param name="conn">database connection</param>
+        /// <param name="tran">transaction</param>
+        /// <returns>boolean</returns>
         public bool Exists(int id, SqlConnection conn, SqlTransaction tran)
         {
             SqlCommand cmd = new SqlCommand(

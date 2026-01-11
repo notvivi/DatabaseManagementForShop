@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DbProjekt.src
 {
     /// <summary>
-    /// 
+    /// Class for creating a commision
     /// </summary>
     public class CommissionService
     {

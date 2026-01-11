@@ -7,23 +7,26 @@ using System.Threading.Tasks;
 namespace DbProjekt.src
 {
     /// <summary>
-    /// Class
+    /// Class for defining user statistics
     /// </summary>
     public class Stats
     {
-        public int PocetArtefaktu { get; set; }
-        public decimal Nejdrazsi { get; set; }
-        public decimal Nejlevnejsi { get; set; }
-        public int PocetObjednavek { get; set; }
+        public int NumberOfArtifacts { get; set; }
+        public decimal MostExpensive { get; set; }
+        public decimal LeastExpensive { get; set; }
+        public int NumberOfOrders { get; set; }
 
-        
+        /// <summary>
+        /// To string
+        /// </summary>
+        /// <returns>string</returns>
         public override string ToString()
         {
             return
-                $"Počet artefaktů v nabídce: {PocetArtefaktu}\n" +
-                $"Nejdražší artefakt: {Nejdrazsi}\n" +
-                $"Nejlevnější artefakt: {Nejlevnejsi}\n" +
-                $"Počet objednávek: {PocetObjednavek}";
+                $"Number of artifacts in the list: {NumberOfArtifacts}\n" +
+                $"The most expensive artifact: {MostExpensive}\n" +
+                $"The least expensive artifact: {LeastExpensive}\n" +
+                $"Number of orders: {NumberOfOrders}";
         }
     }
 }
