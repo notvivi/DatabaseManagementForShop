@@ -65,3 +65,6 @@ C:\Users\vtoma\DbManagementForShop\obj\Release\net8.0\refint\DbProjekt.dll
 C:\Users\vtoma\DbManagementForShop\obj\Release\net8.0\DbProjekt.pdb
 C:\Users\vtoma\DbManagementForShop\obj\Release\net8.0\DbProjekt.genruntimeconfig.cache
 C:\Users\vtoma\DbManagementForShop\obj\Release\net8.0\ref\DbProjekt.dll
+C:\Users\vtoma\DbManagementForShop\bin\Release\net8.0\artifacts.csv
+C:\Users\vtoma\DbManagementForShop\bin\Release\net8.0\config.json
+C:\Users\vtoma\DbManagementForShop\bin\Release\net8.0\races.csv

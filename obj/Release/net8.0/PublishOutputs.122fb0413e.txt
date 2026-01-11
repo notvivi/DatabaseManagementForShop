@@ -1,4 +1,7 @@
 C:\Users\vtoma\build-db1\DbProjekt.exe
+C:\Users\vtoma\build-db1\artifacts.csv
+C:\Users\vtoma\build-db1\config.json
+C:\Users\vtoma\build-db1\races.csv
 C:\Users\vtoma\build-db1\DbProjekt.dll
 C:\Users\vtoma\build-db1\DbProjekt.deps.json
 C:\Users\vtoma\build-db1\DbProjekt.runtimeconfig.json
