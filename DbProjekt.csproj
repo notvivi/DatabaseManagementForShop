@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="doc\" />
     <Folder Include="build\" />
-    <Folder Include="test\" />
   </ItemGroup>
 
 </Project>
