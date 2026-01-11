@@ -31,7 +31,7 @@ namespace DbProjekt.DAO
                 {
                     return new Stats
                     {
-                        NumberOfArtifacts = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                        TheAmountSpent = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
                         MostExpensive = reader.IsDBNull(2) ? 0 : Convert.ToDecimal(reader[2]),
                         LeastExpensive = reader.IsDBNull(3) ? 0 : Convert.ToDecimal(reader[3]),
                         NumberOfOrders = reader.IsDBNull(1) ? 0 : reader.GetInt32(1)

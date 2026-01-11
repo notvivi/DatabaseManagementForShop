@@ -11,7 +11,7 @@ namespace DbProjekt.src
     /// </summary>
     public class Stats
     {
-        public int NumberOfArtifacts { get; set; }
+        public int TheAmountSpent { get; set; }
         public decimal MostExpensive { get; set; }
         public decimal LeastExpensive { get; set; }
         public int NumberOfOrders { get; set; }
@@ -23,7 +23,7 @@ namespace DbProjekt.src
         public override string ToString()
         {
             return
-                $"Number of artifacts in the list: {NumberOfArtifacts}\n" +
+                $"The amount spent: {TheAmountSpent}\n" +
                 $"The most expensive artifact: {MostExpensive}\n" +
                 $"The least expensive artifact: {LeastExpensive}\n" +
                 $"Number of orders: {NumberOfOrders}";

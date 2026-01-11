@@ -76,14 +76,15 @@ inner join order_status on status_id = order_status.id
 
 go
 create view get_stats_per_order_customer as
-select co.customer_id,
-    count(co.id) as pocet_objednavek,
-    max(l.price) as nejdrazsi_objednany,
-    min(l.price) as nejlevnejsi_objednany,
-    (SELECT COUNT(*) FROM list) AS pocet_artefaktu_v_nabidce
-from commission co
-inner join list l on co.list_id = l.id
-group by co.customer_id;
+select
+    c.customer_id,
+    count(c.id) AS number_of_orders,
+    max(l.price) AS most_expensive,
+    min(l.price) AS least_expensive,
+    sum(l.price) AS the_amount_spent
+from commission c
+join list l ON c.list_id = l.id
+group by c.customer_id;
 go
 
 go

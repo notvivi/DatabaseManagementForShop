@@ -1,5 +1,6 @@
 ﻿using DbProjekt.DAO;
 using DbProjekt.Tables;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -257,34 +258,24 @@ namespace DbProjekt.src
                 Console.WriteLine("No orders have been created yet.");
                 return;
             }
-            else
-            {
-                foreach (Commission c in commissions.GetAll())
-                {
 
-                    Console.WriteLine(c);
-                }
+            foreach (Commission c in commissions.GetAll())
+            {
+                Console.WriteLine(c);
             }
 
             int order_id;
-            bool exists;    
+            bool exists;
 
             do
             {
                 order_id = getNumber();
                 exists = commissions.GetAll().Any(i => i.ID == order_id);
 
-                if (exists)
-                {
-                    break;
-                }
-                else
-                {
+                if (!exists)
                     Console.WriteLine("Id wasnt found");
-                }
 
             } while (!exists);
-
 
             Commission commission = commissions.GetByID(order_id);
             if (commission == null)
@@ -294,31 +285,40 @@ namespace DbProjekt.src
             }
 
             Console.WriteLine("Write number of new artifact that you want.");
-
-
             int list_id;
-
             do
             {
                 list_id = getNumber();
                 exists = listArtif.GetAll().Any(i => i.ID == list_id);
 
-                if (exists)
-                {
-                    break;
-                }
-                else
-                {
+                if (!exists)
                     Console.WriteLine("Id wasnt found");
-                }
 
             } while (!exists);
 
+            SqlConnection conn = DatabaseSingleton.GetInstance();
+            SqlTransaction tran = conn.BeginTransaction();
 
-            Commission update = new Commission(commission.ID,list_id,commission.Customer_id, DateTime.Now);
+            try
+            {
+                if (!listArtif.Exists(list_id, conn, tran))
+                    throw new Exception("Artifact does not exist");
 
-            commissions.Save(update);
+                if (!customers.Exists(commission.Customer_id, conn, tran))
+                    throw new Exception("Customer does not exist");
 
+                Commission update = new Commission(commission.ID, list_id, commission.Customer_id, DateTime.Now);
+
+                commissions.Save(update, conn, tran);
+
+                tran.Commit();
+                Console.WriteLine("Order updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                Console.WriteLine("Failed to update order: " + ex.Message);
+            }
         }
         /// <summary>
         /// Method for creating customer
@@ -446,12 +446,12 @@ namespace DbProjekt.src
                 StatsDAO statsDAO = new StatsDAO();
                 Stats stats = statsDAO.GetStats(customerId);
 
-                Console.WriteLine("----- STATISTIKY -----");
+                Console.WriteLine("----- STATISTICS -----");
                 Console.WriteLine(stats);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Nepodařilo se načíst statistiky pro tohoto zákazníka: " + ex.Message);
+                Console.WriteLine("Couldn´t find statistics for this user: " + ex.Message);
             }
         }
 

@@ -201,10 +201,10 @@ GO
 CREATE OR ALTER VIEW get_stats_per_order_customer AS
 SELECT
     c.customer_id,
-    COUNT(c.id) AS pocet_objednavek,
-    MAX(l.price) AS nejdrazsi_objednany,
-    MIN(l.price) AS nejlevnejsi_objednany,
-    (SELECT COUNT(*) FROM list) AS pocet_artefaktu_v_nabidce
+    COUNT(c.id) AS number_of_orders,
+    MAX(l.price) AS most_expensive,
+    MIN(l.price) AS least_expensive,
+    SUM(l.price) AS the_amount_spent
 FROM commission c
 JOIN list l ON c.list_id = l.id
 GROUP BY c.customer_id;
