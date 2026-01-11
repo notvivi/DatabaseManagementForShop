@@ -27,7 +27,6 @@ namespace DbProjekt.src
         /// </summary>
         public UI() 
         {
-            Import();
         }
 
         /// <summary>
@@ -41,27 +40,29 @@ namespace DbProjekt.src
 
             string choice = Console.ReadLine();
 
-            if (choice == "y")
+            if (choice?.Trim().ToLower() == "y")
             {
-                Console.WriteLine("Write file path to artifact csv");
-                string artifactFile = Console.ReadLine();
-                Console.WriteLine("Write file path to race csv");
-                string raceFile = Console.ReadLine();
+                string artifactFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "artifacts.csv");
+                string raceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "races.csv");
 
-                Importer im = new Importer(artifactFile,raceFile);
-                Start();
+                if (!File.Exists(artifactFile) || !File.Exists(raceFile))
+                {
+                    Console.WriteLine("CSV files not found.");
+                    Console.WriteLine("Make sure artifacts.csv and races.csv are next to the exe file.");
+                } else
+                {
+                    Importer im = new Importer();
+                    im.ImportCsv(artifactFile, raceFile);
+                }
+
             }
-            else
-            {
-                Start();
-            }
-            
+            Start();
         }
 
-    /// <summary>
-    /// Method that prints the header of whole Ui
-    /// </summary>
-    public void Start()
+        /// <summary>
+        /// Method that prints the header of whole Ui
+        /// </summary>
+        public void Start()
     {
             bool shopping = true;
 
@@ -488,66 +489,5 @@ namespace DbProjekt.src
                 Console.WriteLine(l);
             }
         }
-
-        /// <summary>
-        /// Method for saving list data to database + loading into list
-        /// </summary>
-        /*public void PushListDAO()
-        {
-            // list is class not a normal list
-            List<int> artifact_ids = new List<int>();
-
-            foreach(Artifact i in artifacts.GetAll())
-            {
-               artifact_ids.Add(i.ID);
-              
-            }
-
-            List l1 = new List(artifact_ids[0],8.0f,800);
-            List l2 = new List(artifact_ids[1], 10.0f, 1500);
-            List l3 = new List(artifact_ids[2], 5.0f, 400);
-            List l4 = new List(artifact_ids[3], 7.0f, 600);
-            List l5 = new List(artifact_ids[4], 2.0f, 300);
-
-            listArtif.Save(l1);
-            listArtif.Save(l2);
-            listArtif.Save(l3);
-            listArtif.Save(l4);
-            listArtif.Save(l5);
-
-        }
-        /// <summary>
-        /// Method for saving race data to database
-        /// </summary>
-        public void PushRaceDAO()
-        {
-            Race r1 = new Race("Human");
-            Race r2 = new Race("Elf");
-            Race r3 = new Race("Dwarf");
-            Race r4 = new Race("Demon");
-            Race r5 = new Race("Troll");
-
-            races.Save(r1);
-            races.Save(r2);
-            races.Save(r3);
-            races.Save(r4);
-            races.Save(r5);
-        }
-        /// <summary>
-        /// Method for saving artifact data to database
-        /// </summary>
-        public void PushArtifactDAO()
-        {
-            Artifact a1 = new Artifact("Blade of the Ruined King", "User or another person is healed", false);
-            Artifact a2 = new Artifact("Ring of Flame", "User is granted power of flames", true);
-            Artifact a3 = new Artifact("Onyx Boots", "When wearing them, user moves faster", false);
-            Artifact a4 = new Artifact("Arch of Guardians", "For creating shiled, 5 meters", false);
-            Artifact a5 = new Artifact("Skull of the Dead", "Creates explosion 5km", true);
-            artifacts.Save(a1);
-            artifacts.Save(a2);
-            artifacts.Save(a3);
-            artifacts.Save(a4);
-            artifacts.Save(a5);       
-        }*/
     }
 }

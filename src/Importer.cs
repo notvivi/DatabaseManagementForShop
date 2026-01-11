@@ -20,12 +20,11 @@ namespace DbProjekt.src
         /// </summary>
         /// <param name="artifactFile"></param>
         /// <param name="raceFile"></param>
-        public Importer(string artifactFile, string raceFile)
+        /// 
+
+        public Importer()
         {
-            ImportCsv(artifactFile, raceFile);
         }
-
-
         /// <summary>
         /// Method for importing from file
         /// Source: ChatGPT helped with some lines
