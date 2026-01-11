@@ -10,8 +10,9 @@
     
 ## How to configure db
 - Go into `config.json` in `build-db1`
-- If you are using `Windows Authentification`, use this -> `{"ConnectionString": "Server=localhost\\SQLEXPRESS;Database=shop;Trusted_Connection=True;TrustServerCertificate=True;"}`
-- If you are using `SQL server authentification`, use this -> `{"ConnectionString": "Server=YOUR_SERVER_NAME;Database=shop;User Id=USER_EXAMPLE;Password=PASSWORD_EXAMPLE;TrustServerCertificate=True;"}`
+- If you are using `Windows Authentification`, use this ->
+  ```{"ConnectionString": "Server=localhost\\SQLEXPRESS;Database=shop;Trusted_Connection=True;TrustServerCertificate=True;"}```
+- If you are using `SQL server authentification`, use this -> ```{"ConnectionString": "Server=YOUR_SERVER_NAME;Database=shop;User Id=USER_EXAMPLE;Password=PASSWORD_EXAMPLE;TrustServerCertificate=True;"}```
 
 ## Usage - database
 1. Open MSSql Studio
@@ -25,4 +26,5 @@ If you want to import data into database through files, do these steps
 
 ## Usage - program
 - To create order, you must add a user
+
 
