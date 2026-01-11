@@ -16,7 +16,7 @@
 ```
 - If you are using `SQL server authentification`, use this ->
 ```
-- {"ConnectionString": "Server=YOUR_SERVER_NAME;Database=shop;User Id=USER_EXAMPLE;Password=PASSWORD_EXAMPLE;TrustServerCertificate=True;"}
+{"ConnectionString": "Server=YOUR_SERVER_NAME;Database=shop;User Id=USER_EXAMPLE;Password=PASSWORD_EXAMPLE;TrustServerCertificate=True;"}
 ```
 
 ## Usage - database
@@ -31,6 +31,7 @@ If you want to import data into database through files, do these steps
 
 ## Usage - program
 - To create order, you must add a user
+
 
 
 
